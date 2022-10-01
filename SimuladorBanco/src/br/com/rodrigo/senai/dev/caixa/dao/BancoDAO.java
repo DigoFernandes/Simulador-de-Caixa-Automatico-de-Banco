@@ -4,7 +4,7 @@ import br.com.rodrigo.senai.dev.caixa.domain.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class usuarioDAO {
+public class BancoDAO {
 
 	static List <Usuario> usuarios = new ArrayList<Usuario>();
 	
@@ -20,6 +20,10 @@ public class usuarioDAO {
 		
 		return usuarios;
 		
+	}
+
+	public static void removerUsuario(Usuario usuario) {
+		usuarios.remove(usuario);
 	}
 
 }

@@ -5,13 +5,21 @@ public class Usuario {
 	private RoleEnum cargo;
 	private String nome;
 	private int senha;
-	private double saldo=2000;
+	private int saldo;
 	
 	public Usuario(String nome, int senha, RoleEnum cargo) {
 
 		this.nome = nome;
 		this.senha = senha;
 		this.cargo = cargo;
+	}
+
+	public int getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(int saldo) {
+		this.saldo = saldo;
 	}
 
 	public String getNome() {
@@ -40,7 +48,9 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [cargo=" + cargo + ", nome=" + nome + ", senha=" + senha + "]\n";
+		return "Usuario [cargo=" + cargo + ", nome=" + nome + ", senha=" + senha + ", saldo=" + saldo + "]";
 	}
+
+	
 
 }
