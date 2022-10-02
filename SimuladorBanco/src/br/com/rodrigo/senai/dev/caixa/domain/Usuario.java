@@ -4,10 +4,10 @@ public class Usuario {
 
 	private RoleEnum cargo;
 	private String nome;
-	private int senha;
+	private String senha;
 	private int saldo;
 	
-	public Usuario(String nome, int senha, RoleEnum cargo) {
+	public Usuario(String nome, String senha, RoleEnum cargo) {
 
 		this.nome = nome;
 		this.senha = senha;
@@ -30,11 +30,11 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public int getSenha() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(int senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
