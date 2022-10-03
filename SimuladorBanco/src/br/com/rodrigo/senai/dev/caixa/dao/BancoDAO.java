@@ -21,16 +21,4 @@ public class BancoDAO {
 		usuarios.remove(usuario);
 	}
 
-	public static Usuario buscarUsuario(String nome) {
-		
-		for (Usuario usuario : usuarios) {
-
-			if (usuario.getNome().equals(nome)) {
-				return usuario;	
-			}
-
-		}
-		return null;
-
-	}
 }

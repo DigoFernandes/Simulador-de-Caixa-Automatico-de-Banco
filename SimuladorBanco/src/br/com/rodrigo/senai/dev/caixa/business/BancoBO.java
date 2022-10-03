@@ -1,8 +1,6 @@
 package br.com.rodrigo.senai.dev.caixa.business;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import br.com.rodrigo.senai.dev.caixa.dao.BancoDAO;
 import br.com.rodrigo.senai.dev.caixa.domain.Nota;
 import br.com.rodrigo.senai.dev.caixa.domain.Usuario;
@@ -19,7 +17,7 @@ public class BancoBO {
 	
 	public static void salvarUsuario(Usuario usuario) {
 		
-		if(usuarioExiste(usuario)) {
+		if(usuarioExiste(usuario)==false) {
 		BancoDAO.salvarUsuario(usuario);
 		System.out.println("Usuario adicionado com sucesso!");
 	}else {
@@ -112,16 +110,15 @@ public class BancoBO {
 
 	}
 		
-	public static boolean logar(String login, String senha) {
 		
-		Usuario usuario = BancoDAO.buscarUsuario(login);
-		
-		if(usuario != null && usuario.getSenha().equals(senha));
-		return true;
-	}
-		
-	public static Usuario buscarUsuario(String nome) {
-		return BancoDAO.buscarUsuario(nome);
+	public static Usuario logar(String nome, String senha) {
+		List<Usuario> usuarios = BancoDAO.listarUsuarios();
+		for(Usuario usuario : usuarios) {
+			if(usuario.getNome().equals(nome)&&usuario != null && usuario.getSenha().equals(senha)) {
+				return usuario;
+			}
+		}
+		return null;
 	}
 	
 }
