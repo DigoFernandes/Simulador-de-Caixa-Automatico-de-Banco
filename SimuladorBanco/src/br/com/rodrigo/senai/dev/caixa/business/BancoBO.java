@@ -11,9 +11,6 @@ import br.com.rodrigo.senai.dev.caixa.exception.ValorInvalidoException;
 
 public class BancoBO {
 
-	static List<Usuario> usuarios = new ArrayList<Usuario>();
-	static List<Nota> notas = new ArrayList<Nota>();
-	
 	private static boolean saqueValido(int valor){
 		if(valor<=1640) {
 			return true;
@@ -21,19 +18,34 @@ public class BancoBO {
 	}
 	
 	public static void salvarUsuario(Usuario usuario) {
-
-		usuarios.add(usuario);
+		
+		if(usuarioExiste(usuario)) {
+		BancoDAO.salvarUsuario(usuario);
+		System.out.println("Usuario adicionado com sucesso!");
+	}else {
+		System.out.println("O usuario já existe!");
+	}
+	}
+	
+	private static boolean usuarioExiste(Usuario usuario) {
+		List <Usuario> usuarios = BancoDAO.listarUsuarios();
+		
+			if (usuarios.contains(usuario)) {
+				return true;
+			}
+		
+		return false;
 
 	}
-
+	
 	public static List<Usuario> Listar() {
 
-		return usuarios;
+		return BancoDAO.listarUsuarios();
 
 	}
 
 	public static void removerUsuario(Usuario usuario) {
-		usuarios.remove(usuario);
+		BancoDAO.removerUsuario(usuario);
 	}
 
 	private static void verificarSaldo(int saldo, int verificacao) throws SaldoInsuficienteException {
@@ -99,17 +111,15 @@ public class BancoBO {
 		}
 
 	}
-
+		
 	public static boolean logar(String login, String senha) {
 		
 		Usuario usuario = BancoDAO.buscarUsuario(login);
-		if(usuario != null || usuario.getSenha().equals(senha)) {
+		
+		if(usuario != null && usuario.getSenha().equals(senha));
 		return true;
-		}
-		System.out.println("Por favor insira um usuario valido ou cadastre-se.");
-		return false;
 	}
-	
+		
 	public static Usuario buscarUsuario(String nome) {
 		return BancoDAO.buscarUsuario(nome);
 	}
